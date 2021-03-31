@@ -1,0 +1,14 @@
+.profile__edition{
+    width: 100%;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+@media screen and (max-width: 1279px) {
+    .profile__edition{
+        max-width: 218px;
+        margin: 0px auto 14px;
+    }
+}

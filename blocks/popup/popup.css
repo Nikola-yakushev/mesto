@@ -1,0 +1,18 @@
+@import url(./__form/popup__form.css);
+@import url(./__close-button/popup__close-button.css);
+@import url(./__title/popup__title.css);
+@import url(./__input/popup__input.css);
+@import url(./__add-button/popup__add-button.css);
+
+.popup{
+    display: none;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.5);
+    overflow: auto;
+}
