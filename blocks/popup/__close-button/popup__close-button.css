@@ -4,11 +4,11 @@
     background-position: center;
     background-repeat: no-repeat;
     background-color: transparent;
-    background-image: url(../images/close-icon.svg);
+    background-image: url(../../../images/close-icon.svg);
     border: none;
-    position: absolute;
+    position: relative;
     top: -40px;
-    right: -40px;
+    right: -430px;
 }
 
 .popup__close-button:hover{
@@ -20,6 +20,6 @@
         width: 26px;
         height: 26px;
         top: -40px;
-        right: 0px;
+        right: -256px;
     }
 }
