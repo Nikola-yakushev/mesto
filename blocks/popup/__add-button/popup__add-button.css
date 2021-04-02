@@ -13,6 +13,7 @@
     border: none;
     background: #000000;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 .popup__add-button:hover{

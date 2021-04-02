@@ -6,6 +6,9 @@
     background-color: transparent;
     background-image: url(../../../images/like.svg);
     border: none;
+    cursor: pointer;
+    transition: .3s;
+    
 }
 
 .element__like:hover{

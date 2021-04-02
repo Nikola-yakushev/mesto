@@ -1,4 +1,5 @@
-let popupForm = document.querySelector('.popup'); // наш попап
+let popup = document.querySelector('.popup'); // наш попап
+let popupForm = document.querySelector('.popup__form'); //наша форма попапа
 
 let editButton = document.querySelector('.profile__edit-button'); // нашли кнопку открытия попапа 
 let closeButton = document.querySelector('.popup__close-button'); //кнопка закрытия формы
@@ -11,13 +12,13 @@ let inputTextHobby = document.querySelector('.popup__input_name_hobby');
 
 
 function openForm() {
-    popupForm.classList.add('popup_display_active');
+    popup.classList.add('popup_opened');
     inputTextName.value = profileName.textContent;
     inputTextHobby.value = profileHobby.textContent;
 }
 
 function closeForm() {
-    popupForm.classList.remove('popup_display_active');
+    popup.classList.remove('popup_opened');
 }
 
 function submitForm (evt) {
