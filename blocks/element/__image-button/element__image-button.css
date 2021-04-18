@@ -1,0 +1,10 @@
+.element__image-button{
+    width: 100%;
+    max-width: 282px;
+    height: 282px;
+    border-radius: 10px 10px 0 0;
+    border: 0;
+    background-color: transparent;
+    position: absolute;
+    z-index: 2;
+}
