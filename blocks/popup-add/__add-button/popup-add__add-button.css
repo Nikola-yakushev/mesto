@@ -1,0 +1,33 @@
+.popup-add__add-button{
+    max-width: 358px;
+    width: 100%;
+    margin: 18px auto 37px;
+    padding-top: 14px;
+    padding-bottom: 18px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
+    border: none;
+    background: #000000;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.popup-add__add-button:hover{
+    opacity: 0.8;
+    transition: .3s;
+}
+
+@media screen and (max-width: 1279px) {
+    .popup-add__add-button{
+        max-width: 238px;
+        margin-top: 15px;
+        margin-bottom: 25px;
+        padding-bottom: 14px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

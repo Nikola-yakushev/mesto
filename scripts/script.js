@@ -16,8 +16,8 @@ const profileHobby = document.querySelector('.profile__hobby'); // нашли м
 
 const inputTextName = document.querySelector('.popup__input_name_name'); // инпут имени
 const inputTextHobby = document.querySelector('.popup__input_name_hobby'); // инпут хобби
-const inputTextTitle = document.querySelector('.popup__input_name_title'); // инпут заголовка картинки
-const inputTextLink = document.querySelector('.popup__input_name_link'); //инпут ссылки на картинку
+const inputTextTitle = document.querySelector('.popup-add__input_name_title'); // инпут заголовка картинки
+const inputTextLink = document.querySelector('.popup-add__input_name_link'); //инпут ссылки на картинку
 
 const elementsList = document.querySelector('.elements'); //нашли место спауна карточек
 const elementTemplate = document.querySelector('.element-template').content.querySelector('.element'); //создали константу template
