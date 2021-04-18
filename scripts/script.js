@@ -77,6 +77,7 @@ function createCard(item) {
   const imageLink = document.querySelector('.popup-image__image');
   const imageText = document.querySelector('.popup-image__title');
   imageText.textContent = item.name;
+  imageText.alt = item.name;
   imageLink.src = item.link;
   });
 
