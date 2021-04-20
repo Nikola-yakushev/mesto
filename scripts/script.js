@@ -60,12 +60,12 @@ function createCard(item) {
   cardText.textContent = item.name;
   cardText.alt = item.name;
   cardImage.src = item.link;
-  elementsList.prepend(cardElement);
+  additionCards(elementsList, cardElement);
 
   //функция позволяющая ставить лайки
   const likeButton = document.querySelector('.element__like');
   likeButton.addEventListener('click', function() {
-    likeButton.classList.toggle('element__like_active');
+  likeButton.classList.toggle('element__like_active');
   });
   //функция удаляющая карточки
   const deleteButton = cardElement.querySelector('.element__delete-button');
@@ -85,6 +85,11 @@ function createCard(item) {
 
   return cardElement;
 };
+
+function additionCards (section, card){
+  section.prepend(card);
+}
+
 //функция добавление карточки
 function cardAdd(item) {
   const card = createCard(item);
