@@ -112,6 +112,7 @@ function openNewCardPopup() {
 //функция закрытия попапа, добавляющего картинки
 function closeNewCardPopup() {
   closePopup(popupNewCard);
+  
 }
 
 //функция отправки формы добавления карточки
@@ -148,13 +149,34 @@ function submitEditPopup (evt) {
 
   //функция открытия попапа, принимающая на вход заданное значение
 function openPopup (popup) {
-  popup.classList.add('popup_opened');
+  popup.classList.add("popup_opened");
+  document.addEventListener('keydown', closeByEsc);
 }
 
 //функция закрытия попапа, принимающая на вход заданное значение
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEsc);
 }
+
+
+//закрытие при нажатии на Esc
+function closeByEsc (event){
+  const popupOpened = document.querySelector('.popup_opened')
+  if (event.key === 'Escape'){
+    closePopup(popupOpened);
+  }
+}
+
+//закрытие при клике вне попапа
+function closeByClick (evt){
+  const popupOpened = document.querySelector('.popup_opened')
+  if (evt.target.classList.contains('popup')) {
+    closePopup(popupOpened);
+  }
+}
+
+
 
 //обработчики 
 addButton.addEventListener('click', openNewCardPopup);
@@ -164,3 +186,4 @@ editButton.addEventListener('click', openEditPopup);
 closeButtonEdit.addEventListener('click', closeEditPopup);
 popupFormEdit.addEventListener('submit', submitEditPopup);
 closeButtonImage.addEventListener('click', closeImagePopup);
+document.addEventListener('click', closeByClick)
