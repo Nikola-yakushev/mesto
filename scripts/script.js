@@ -1,16 +1,19 @@
-const popup = document.querySelector('.popup'); // наш попап для заполнения данных пользователя
 const popupEdit = document.querySelector('.popup_type_edit')
 const popupNewCard = document.querySelector('.popup_type_new-card')
 const popupImage = document.querySelector('.popup_type_image')
 
 const popupFormEdit = document.querySelector('.popup__form_edit'); //наша форма попапа для заполнения данных пользователя
 const popupFormCard = document.querySelector('.popup__form_card');
+const popupSubButton = popupNewCard.querySelector('.popup__add-button')
 
 const editButton = document.querySelector('.profile__edit-button'); // нашли кнопку открытия попапа 
-let closeButtonEdit = document.querySelector('.popup__close-button_edit'); //кнопка закрытия формы
-let closeButtonCard = document.querySelector('.popup__close-button_card');
-let closeButtonImage = document.querySelector('.popup__close-button_image');
+const closeButtonEdit = document.querySelector('.popup__close-button_edit'); //кнопка закрытия формы
+const closeButtonCard = document.querySelector('.popup__close-button_card');
+const closeButtonImage = document.querySelector('.popup__close-button_image');
 const addButton = document.querySelector('.profile__add-button');// кнопка открытия попапа для добавления карточки
+
+const imageLink = document.querySelector('.popup__image');
+const imageText = document.querySelector('.popup__caption');
 
 const profileName = document.querySelector('.profile__name'); // нашли место куда вставляется текст имени
 const profileHobby = document.querySelector('.profile__hobby'); // нашли место куда вставляется текст хобби
@@ -58,12 +61,11 @@ function createCard(item) {
   const cardText = cardElement.querySelector('.element__text');
   const cardImage = cardElement.querySelector('.element__image');
   cardText.textContent = item.name;
-  cardText.alt = item.name;
+  cardImage.alt = item.name;
   cardImage.src = item.link;
-  additionCards(elementsList, cardElement);
-
+            
   //функция позволяющая ставить лайки
-  const likeButton = document.querySelector('.element__like');
+  const likeButton = cardElement.querySelector('.element__like');
   likeButton.addEventListener('click', function() {
   likeButton.classList.toggle('element__like_active');
   });
@@ -73,11 +75,9 @@ function createCard(item) {
   cardElement.remove();
   });
   //открытие при нажатии на картинку 
-  const imageButton = document.querySelector('.element__image-button');
+  const imageButton = cardElement.querySelector('.element__image-button');
   imageButton.addEventListener('click', function() {
   openPopup(popupImage);
-  const imageLink = document.querySelector('.popup__image');
-  const imageText = document.querySelector('.popup__caption');
   imageText.textContent = item.name;
   imageText.alt = item.name;
   imageLink.src = item.link;
@@ -86,42 +86,44 @@ function createCard(item) {
   return cardElement;
 };
 
-function additionCards (section, card){
+//функция отправки формы добавления карточки
+function submitNewCardPopup (evt) {
+  evt.preventDefault();
+  const item = {name: inputTextTitle.value, link: inputTextLink.value};
+  const cardItem = createCard(item);
+  prependCard(elementsList, cardItem)
+  closePopup(popupNewCard);
+};
+
+function prependCard (section, card){
   section.prepend(card);
 }
 
-//функция добавление карточки
-function cardAdd(item) {
-  const card = createCard(item);
-  elementsList.append(card);
-};
-
 //функция добавления карточек из массива 
+function appendCard(initialCards){
   initialCards.forEach(function (item) {
   const card = createCard(item);
   elementsList.append(card);
 });
+}
 
-
+function resetPopupForm(form) {
+  form.reset();
+}
 
 //функция открытия попапа, добавляющего картинки
 function openNewCardPopup() {
+  popupSubButton.classList.add("popup__add-button_inactive");
+  resetPopupForm(popupFormCard);
   openPopup(popupNewCard);
 }
 
 //функция закрытия попапа, добавляющего картинки
 function closeNewCardPopup() {
   closePopup(popupNewCard);
-  
 }
 
-//функция отправки формы добавления карточки
-function submitNewCardPopup (evt) {
-  evt.preventDefault();
-  const item = {name: inputTextTitle.value, link: inputTextLink.value};
-  createCard(item);
-  closePopup(popupNewCard);
-};
+
 
 //функция отправки формы юзера
 function submitEditPopup (evt) {
@@ -162,21 +164,20 @@ function closePopup (popup) {
 
 //закрытие при нажатии на Esc
 function closeByEsc (event){
-  const popupOpened = document.querySelector('.popup_opened')
   if (event.key === 'Escape'){
+    const popupOpened = document.querySelector('.popup_opened')
     closePopup(popupOpened);
   }
 }
 
 //закрытие при клике вне попапа
 function closeByClick (evt){
-  const popupOpened = document.querySelector('.popup_opened')
   if (evt.target.classList.contains('popup')) {
-    closePopup(popupOpened);
+    closePopup(evt.target);
   }
 }
 
-
+appendCard(initialCards);
 
 //обработчики 
 addButton.addEventListener('click', openNewCardPopup);
