@@ -1,4 +1,4 @@
-import { openPopup, popupImage, imageLink, imageText } from "./index.js";
+import { openPopup, popupImage, imageLink, imageText} from "./index.js";
 
 export class Card{
     constructor(data, cardSelector){
@@ -31,7 +31,7 @@ export class Card{
         //вернули карточку
         return this._element;
     }
-    
+
     _setEventListeners(){
         //поставим обработчик на кнопку лайка 
         this._likeButton = this._element.querySelector('.element__like');
@@ -57,6 +57,7 @@ export class Card{
     //функция позволяет удалять карточку
     _handleDeleteClick(){
         this._element.remove();
+        this._element = null;
     }
     //функция позволяет открывать попап с картинкой
     _handlePopupImageClick(){

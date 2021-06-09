@@ -1,3 +1,5 @@
+import {buttonDisabled} from './index.js'
+
 export class FormValidator {
     constructor(configs, formSelect){
         this._configs = configs
@@ -40,11 +42,7 @@ export class FormValidator {
         });
     }; 
      
-    validationErrorMessage() {
-        this._inputList.forEach((inputElement) => {
-          this._hideInputError(inputElement);
-        });
-      }
+    
        
     enableValidation(){
         this._formSelect.addEventListener('submit', function (evt) {
@@ -63,8 +61,10 @@ export class FormValidator {
   toggleButtonState(){
     if (this._hasInvalidInput()) {
         this._buttonElement.classList.add(this._configs.inactiveButtonClass);
+        buttonDisabled(this._buttonElement)
     } else {
         this._buttonElement.classList.remove(this._configs.inactiveButtonClass);
+        this._buttonElement.removeAttribute('disabled');
     }
   }; 
 }
