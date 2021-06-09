@@ -2,10 +2,11 @@ import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
 import {initialCards} from './initial-cards.js' 
 import {validationConfig} from './validation-config.js' 
+export { imageLink, imageText, buttonDisabled, openPopup, popupImage};
 
 const popupEdit = document.querySelector('.popup_type_edit')
 const popupNewCard = document.querySelector('.popup_type_new-card')
-export const popupImage = document.querySelector('.popup_type_image')
+const popupImage = document.querySelector('.popup_type_image')
 
 const popupFormEdit = document.querySelector('.popup__form_edit'); //наша форма попапа для заполнения данных пользователя
 const popupFormCard = document.querySelector('.popup__form_card');
@@ -17,8 +18,8 @@ const closeButtonCard = document.querySelector('.popup__close-button_card');
 const closeButtonImage = document.querySelector('.popup__close-button_image');
 const addButton = document.querySelector('.profile__add-button');// кнопка открытия попапа для добавления карточки
 
-export const imageLink = document.querySelector('.popup__image');
-export const imageText = document.querySelector('.popup__caption');
+const imageLink = document.querySelector('.popup__image');
+const imageText = document.querySelector('.popup__caption');
 
 const profileName = document.querySelector('.profile__name'); // нашли место куда вставляется текст имени
 const profileHobby = document.querySelector('.profile__hobby'); // нашли место куда вставляется текст хобби
@@ -30,13 +31,17 @@ const inputTextLink = document.querySelector('.popup__input_name_link'); //ин�
 
 const elementsList = document.querySelector('.elements'); //нашли место спауна карточек
 
+function renderCard (data) {
+  const cardItem = new Card (data, '.element-template');
+const cardElement = cardItem.generateCard();
+return cardElement
+}
+
 //функция отправки формы добавления карточки
 function submitNewCardPopup (evt) {
   evt.preventDefault();
   const data = {name: inputTextTitle.value, link: inputTextLink.value};
-  const cardItem = new Card (data, '.element-template');
-  const cardElement = cardItem.generateCard();
-  prependCard(elementsList, cardElement)
+  prependCard(elementsList, renderCard (data))
   closePopup(popupNewCard);
 };
 
@@ -47,9 +52,7 @@ function prependCard (section, card){
 //функция добавления карточек из массива 
 function appendCard(initialCards){
   initialCards.forEach(function (data) {
-  const cardItem = new Card (data, '.element-template');
-  const cardElement = cardItem.generateCard();
-  elementsList.append(cardElement);
+  elementsList.append(renderCard (data));
 });
 }
 
@@ -65,7 +68,7 @@ function openNewCardPopup() {
   openPopup(popupNewCard);
 }
 
-export function buttonDisabled(item){
+function buttonDisabled(item){
   item.setAttribute('disabled', true);
 }
 
@@ -99,7 +102,7 @@ function submitEditPopup (evt) {
   };
 
   //функция открытия попапа, принимающая на вход заданное значение
-  export function openPopup (popup) {
+  function openPopup (popup) {
   popup.classList.add("popup_opened");
   document.addEventListener('keydown', closeByEsc);
 }
